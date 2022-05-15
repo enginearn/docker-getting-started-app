@@ -1,10 +1,6 @@
 const waitPort = require('wait-port');
 const fs = require('fs');
-<<<<<<< HEAD
 const mysql = require('mysql2');
-=======
-const mysql = require('mysql');
->>>>>>> origin/main
 
 const {
     MYSQL_HOST: HOST,
