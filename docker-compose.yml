@@ -1,15 +1,16 @@
-version: "4.0"
+version: "3.8"
 services:
   app:
     image: node:12-alpine
-    command: sh -c "yarn install && yarn run dev"
+    command: sh -c "apk upgrade --no-cache nodejs npm && \
+                    yarn install && yarn run dev"
     ports:
     - 3000:3000
     working_dir: /app
     volumes:
     - ./:/app/
     environment:
-      # CHOKIDAR_USEPOLLING: 1
+      CHOKIDAR_USEPOLLING: 1
       MYSQL_HOST: mysql
       MYSQL_USER: root
       MYSQL_PASSWORD: secret
@@ -22,6 +23,10 @@ services:
     environment: 
       MYSQL_ROOT_PASSWORD: secret
       MYSQL_DATABASE: todos
+    networks:
+      - todo-network
 
 volumes:
   todo-mysql-data:
+networks:
+  todo-network:
